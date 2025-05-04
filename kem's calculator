@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kem's Calculator </title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      background: #fff0f6;
+      padding: 25px;
+      border-radius: 25px;
+      box-shadow: 0 8px 20px rgba(255, 170, 200, 0.4);
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #screen {
+      width: 100%;
+      height: 70px;
+      font-size: 32px;
+      border-radius: 20px;
+      border: none;
+      background: #ffe9f3;
+      text-align: right;
+      padding: 15px 20px;
+      margin-bottom: 25px;
+      color: #5a5a5a;
+      box-shadow: inset 0 3px 6px rgba(255, 182, 193, 0.4);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    button {
+      padding: 20px;
+      font-size: 20px;
+      border-radius: 50%;
+      border: none;
+      background-color: #ffd6ec;
+      color: #6e6e6e;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #ffb6d9;
+      color: white;
+      transform: scale(0.95);
+    }
+
+    button:active {
+      background-color: #ff80c1;
+    }
+
+    .equal {
+      background-color: #ff99cc;
+      color: white;
+    }
+
+    .clear {
+      background-color: #ffccde;
+    }
+
+    .zero {
+      grid-column: span 2;
+      border-radius: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #d63384;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>Kem's Calculator </h2>
+    <input type="text" id="screen" readonly>
+    <div class="buttons">
+      <button class="clear" onclick="clearScreen()">AC</button>
+      <button onclick="append('/')">/</button>
+      <button onclick="append('*')">*</button>
+      <button onclick="append('-')">-</button>
+
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="append('+')">+</button>
+
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button class="equal" onclick="calculate()">=</button>
+
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <div></div> <!-- empty for spacing -->
+
+      <button class="zero" onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+    </div>
+  </div>
+
+  <script>
+    const screen = document.getElementById('screen');
+
+    function append(value) {
+      screen.value += value;
+    }
+
+    function clearScreen() {
+      screen.value = '';
+    }
+
+    function calculate() {
+      try {
+        screen.value = eval(screen.value);
+      } catch {
+        screen.value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
